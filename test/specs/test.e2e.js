@@ -1,4 +1,3 @@
-import { expect, browser } from '@wdio/globals';
 import LoginPage from '../pageobjects/login.page.js';
 import InventoryPage from '../pageobjects/inventory.page.js';
 import CartPage from '../pageobjects/cart.page.js';
