@@ -3,3 +3,4 @@ logs/
 *.log
 screenshots/
 debug_*.png
+.DS_Store
