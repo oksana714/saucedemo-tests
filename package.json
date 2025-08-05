@@ -1,5 +1,5 @@
 {
-  "name": "TestProject",
+  "name": "test-project",
   "type": "module",
   "devDependencies": {
     "@wdio/cli": "^9.18.4",
