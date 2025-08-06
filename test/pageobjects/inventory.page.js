@@ -47,9 +47,9 @@ class InventoryPage extends Page {
         return isInventoryListDisplayed && isShoppingCartDisplayed;
     }
     
-    async clickBurgerButton () {
+    async clickBurgerButton() {
         await this.burgerButton.click();
-        await browser.pause(1000);
+        await this.menuItems[0].waitForDisplayed({ timeout: 10000 });
     }
     
     async getMenuItemsCount () {
@@ -58,33 +58,34 @@ class InventoryPage extends Page {
     
     async clickLogoutButton () {
         await this.logoutButton.click();
-        await browser.pause(1000)
     }
     async clickAddToCartByIndex(index = 1) {
         const selector = `.inventory_item:nth-child(${index}) .btn_inventory`;
         await $(selector).click();
-        await browser.pause(1000);
+        await this.cartBadge.waitForDisplayed({ timeout: 10000 });
     }
     
     async getCartBadgeCount() {
         const badge = await this.cartBadge;
         const isBadgeDisplayed = await badge.isExisting();
         if (!isBadgeDisplayed) {
-        console.log('Cart badge not found, assuming cart is empty');
         return 0;
     }
         const text = await badge.getText();
         return parseInt(text, 10) || 0;
     }
 
-    async clickCartButton () {
+    async clickCartButton() {
         await this.shoppingCartLink.click();
-        await browser.pause(1000); 
+        await browser.waitUntil(
+            async () => (await browser.getUrl()).includes('cart.html'),
+            { timeout: 10000 }
+        ); 
     }
     
-    async selectSortOption (value) {
-        await this.sortDropdown.selectByAttribute('value', value)
-        await browser.pause(1000);
+    async selectSortOption(value) {
+        await this.sortDropdown.selectByAttribute('value', value); 
+        await this.inventoryList.waitForDisplayed({ timeout: 10000 });
     }
     
     async getProductNames () {
@@ -108,19 +109,28 @@ class InventoryPage extends Page {
         return prices;
     }
     
-    async clickTwitterLink () {
+    async clickTwitterLink() {
         await this.twitterLink.click();
-        await browser.pause(1000);
+        await browser.waitUntil(
+            async () => (await browser.getWindowHandles()).length > 1,
+            { timeout: 10000 }
+        );
     }
 
-    async clickFacebookLink () {
+    async clickFacebookLink() {
         await this.facebookLink.click();
-        await browser.pause(1000);
+        await browser.waitUntil(
+            async () => (await browser.getWindowHandles()).length > 1,
+            { timeout: 10000 }
+        );
     }
 
-    async clickLinkedInLink () {
+    async clickLinkedInLink() {
         await this.linkedinLink.click();
-        await browser.pause(1000);
+        await browser.waitUntil(
+            async () => (await browser.getWindowHandles()).length > 1,
+            { timeout: 10000 }
+        );
     }
 }
 export default new InventoryPage();
