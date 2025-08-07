@@ -2,12 +2,19 @@
   "name": "test-project",
   "type": "module",
   "devDependencies": {
+    "@eslint/js": "^9.32.0",
     "@wdio/cli": "^9.18.4",
     "@wdio/local-runner": "^9.18.4",
     "@wdio/mocha-framework": "^9.18.0",
-    "@wdio/spec-reporter": "^9.18.0"
+    "@wdio/spec-reporter": "^9.18.0",
+    "eslint": "^9.32.0",
+    "globals": "^16.3.0",
+    "prettier": "^3.6.2"
   },
   "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
     "test": "wdio run ./wdio.conf.js"
   }
 }
