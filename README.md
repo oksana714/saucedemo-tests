@@ -7,7 +7,7 @@ npm i
 ### 2. Run tests
 
 ```shell
-npm run test
+npm test
 ```
 
 
