@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker';
 import loginPage from '../pageobjects/login.page.js';
 import inventoryPage from '../pageobjects/inventory.page.js';
 import cartPage from '../pageobjects/cart.page.js';
@@ -191,9 +192,9 @@ describe('Saucedemo Website Tests', () => {
       async () => (await browser.getUrl()).includes('checkout-step-one.html'),
       { timeout: 10000, interval: 500 }
     );
-    const firstName = 'Oksana';
-    const lastName = 'Mir';
-    const postalCode = '12345';
+    const firstName = faker.person.firstName();
+    const lastName = faker.person.lastName();
+    const postalCode = faker.location.zipCode()
     await checkoutPage.fillCheckoutForm(firstName, lastName, postalCode);
     expect(await checkoutPage.firstNameInput.getValue()).toEqual(firstName);
     expect(await checkoutPage.lastNameInput.getValue()).toEqual(lastName);
