@@ -1,27 +1,27 @@
-import Page from "./page.js";
+import Page from './page.js';
 
 class LoginPage extends Page {
   get inputUsername() {
-    return $("#user-name");
+    return $('#user-name');
   }
 
   get inputPassword() {
-    return $("#password");
+    return $('#password');
   }
 
   get btnSubmit() {
-    return $("#login-button");
+    return $('#login-button');
   }
   get errorMessage() {
-    return $(" .error-message-container");
+    return $(' .error-message-container');
   }
 
   get usernameErrorIcon() {
-    return $("#user-name + .error_icon");
+    return $('#user-name + .error_icon');
   }
 
   get passwordErrorIcon() {
-    return $("#password + .error_icon");
+    return $('#password + .error_icon');
   }
 
   async login(username, password) {
@@ -31,7 +31,7 @@ class LoginPage extends Page {
   }
 
   async open() {
-    return await super.open("");
+    return await super.open('');
   }
 }
 export default new LoginPage();

@@ -1,34 +1,34 @@
 class CheckoutPage {
   get firstNameInput() {
-    return $("#first-name");
+    return $('#first-name');
   }
 
   get lastNameInput() {
-    return $("#last-name");
+    return $('#last-name');
   }
 
   get postalCodeInput() {
-    return $("#postal-code");
+    return $('#postal-code');
   }
 
   get continueButton() {
-    return $("#continue");
+    return $('#continue');
   }
 
   get totalPriceLabel() {
-    return $(".summary_subtotal_label");
+    return $('.summary_subtotal_label');
   }
 
   get finishButton() {
-    return $("#finish");
+    return $('#finish');
   }
 
   get completeHeader() {
-    return $(".complete-header");
+    return $('.complete-header');
   }
 
   get backHomeButton() {
-    return $("#back-to-products");
+    return $('#back-to-products');
   }
 
   async fillCheckoutForm(firstName, lastName, postalCode) {

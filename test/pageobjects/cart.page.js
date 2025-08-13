@@ -1,17 +1,17 @@
-import Page from "./page.js";
+import Page from './page.js';
 
 class CartPage extends Page {
   get cartList() {
-    return $(".cart_list");
+    return $('.cart_list');
   }
   get cartItem() {
-    return $(".cart_item");
+    return $('.cart_item');
   }
   get cartItemName() {
-    return $(".cart_item .inventory_item_name");
+    return $('.cart_item .inventory_item_name');
   }
   get checkoutButton() {
-    return $("#checkout");
+    return $('#checkout');
   }
 
   async clickCheckoutButton() {

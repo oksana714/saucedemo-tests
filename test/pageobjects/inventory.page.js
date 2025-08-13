@@ -1,35 +1,35 @@
-import Page from "./page.js";
+import Page from './page.js';
 
 class InventoryPage extends Page {
   get inventoryList() {
-    return $(".inventory_list");
+    return $('.inventory_list');
   }
   get shoppingCartLink() {
-    return $(".shopping_cart_link");
+    return $('.shopping_cart_link');
   }
   get burgerButton() {
-    return $("#react-burger-menu-btn");
+    return $('#react-burger-menu-btn');
   }
   get menuItems() {
-    return $$(".bm-item.menu-item");
+    return $$('.bm-item.menu-item');
   }
   get logoutButton() {
-    return $("#logout_sidebar_link");
+    return $('#logout_sidebar_link');
   }
   get cartBadge() {
-    return $(".shopping_cart_badge");
+    return $('.shopping_cart_badge');
   }
   get sortDropdown() {
-    return $(".product_sort_container");
+    return $('.product_sort_container');
   }
   get inventoryItems() {
-    return $$(".inventory_item");
+    return $$('.inventory_item');
   }
   get inventoryItemNames() {
-    return $$(".inventory_item_name");
+    return $$('.inventory_item_name');
   }
   get inventoryItemPrices() {
-    return $$(".inventory_item_price");
+    return $$('.inventory_item_price');
   }
   get twitterLink() {
     return $('a[data-test="social-twitter"]');
@@ -68,19 +68,17 @@ class InventoryPage extends Page {
   }
 
   async selectSortOption(value) {
-    await this.sortDropdown.selectByAttribute("value", value);
+    await this.sortDropdown.selectByAttribute('value', value);
   }
 
   async getProductNames() {
-    return await this.inventoryItemNames.map(
-      async (element) => await element.getText(),
-    );
+    return await this.inventoryItemNames.map(async (element) => await element.getText());
   }
 
   async getProductPrices() {
     return await this.inventoryItemPrices.map(async (element) => {
       const priceText = await element.getText();
-      return parseFloat(priceText.replace("$", ""));
+      return parseFloat(priceText.replace('$', ''));
     });
   }
 

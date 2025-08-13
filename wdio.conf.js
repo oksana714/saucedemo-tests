@@ -4,7 +4,7 @@ export const config = {
   // Runner Configuration
   // ====================
   // WebdriverIO supports running e2e tests as well as unit and component tests.
-  runner: "local",
+  runner: 'local',
   //
   // ==================
   // Specify Test Files
@@ -20,7 +20,7 @@ export const config = {
   // The path of the spec files will be resolved relative from the directory of
   // of the config file unless it's absolute.
   //
-  specs: ["./test/specs/**/*.js"],
+  specs: ['./test/specs/**/*.js'],
   // Patterns to exclude.
   exclude: [
     // 'path/to/excluded/files'
@@ -50,7 +50,7 @@ export const config = {
   capabilities: [
     {
       // capabilities for local browser web tests
-      browserName: "chrome", // or "firefox", "microsoftedge", "safari"
+      browserName: 'chrome', // or "firefox", "microsoftedge", "safari"
     },
   ],
 
@@ -61,7 +61,7 @@ export const config = {
   // Define all options that are relevant for the WebdriverIO instance here
   //
   // Level of logging verbosity: trace | debug | info | warn | error | silent
-  logLevel: "info",
+  logLevel: 'info',
   //
   // Set specific log levels per logger
   // loggers:
@@ -109,7 +109,7 @@ export const config = {
   //
   // Make sure you have the wdio adapter package for the specific framework installed
   // before running any tests.
-  framework: "mocha",
+  framework: 'mocha',
 
   //
   // The number of times to retry the entire specfile when it fails as a whole
@@ -124,12 +124,12 @@ export const config = {
   // Test reporter for stdout.
   // The only one supported by default is 'dot'
   // see also: https://webdriver.io/docs/dot-reporter
-  reporters: ["spec"],
+  reporters: ['spec'],
 
   // Options to be passed to Mocha.
   // See the full list at http://mochajs.org/
   mochaOpts: {
-    ui: "bdd",
+    ui: 'bdd',
     timeout: 60000,
   },
 

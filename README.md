@@ -9,6 +9,3 @@ npm i
 ```shell
 npm test
 ```
-
-
-
