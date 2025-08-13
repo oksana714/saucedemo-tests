@@ -5,10 +5,13 @@ class CartPage extends Page {
     return $('.cart_list');
   }
   get cartItem() {
-    return $('.cart_item');
+    return $$('.cart_item');
   }
   get cartItemName() {
-    return $('.cart_item .inventory_item_name');
+    return $$('.cart_item .inventory_item_name');
+  }
+  get cartItemPrice() {
+    return $$('.cart_item .inventory_item_price');
   }
   get checkoutButton() {
     return $('#checkout');

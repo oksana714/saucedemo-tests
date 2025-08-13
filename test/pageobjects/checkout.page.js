@@ -30,6 +30,12 @@ class CheckoutPage {
   get backHomeButton() {
     return $('#back-to-products');
   }
+  get taxLabel() {
+    return $('.summary_tax_label');
+  }
+  get totalLabel() {
+    return $('.summary_total_label');
+  }
 
   async fillCheckoutForm(firstName, lastName, postalCode) {
     await this.firstNameInput.setValue(firstName);

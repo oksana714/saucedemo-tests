@@ -31,6 +31,15 @@ class InventoryPage extends Page {
   get inventoryItemPrices() {
     return $$('.inventory_item_price');
   }
+  get firstProductName() {
+    return $('.inventory_item:first-child .inventory_item_name');
+  }
+  get secondProductName() {
+    return $('.inventory_item:nth-child(2) .inventory_item_name');
+  }
+  get secondProductPrice() {
+    return $('.inventory_item:nth-child(2) .inventory_item_price');
+  }
   get twitterLink() {
     return $('a[data-test="social-twitter"]');
   }

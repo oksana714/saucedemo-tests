@@ -38,7 +38,7 @@ describe('Saucedemo Website Tests', () => {
 
   it('TC - [005] should add product to cart, logout, login again, and verify product in cart', async () => {
     expect(await inventoryPage.inventoryList.isDisplayed()).toBe(true);
-    const productName = await $('.inventory_item:first-child .inventory_item_name').getText();
+    const productName = await inventoryPage.firstProductName.getText();
     await inventoryPage.clickAddToCartByIndex(1);
     const badge = await inventoryPage.cartBadge;
     expect(await badge.isExisting()).toBe(true);
@@ -57,7 +57,7 @@ describe('Saucedemo Website Tests', () => {
     expect(await inventoryPage.inventoryList.isDisplayed()).toBe(true);
     await inventoryPage.clickCartButton();
     expect(await cartPage.cartList.isDisplayed()).toBe(true);
-    const item = await $('.cart_item .inventory_item_name');
+    const item = await cartPage.cartItemName[0];
     expect(await item.getText()).toEqual(productName);
   });
 
@@ -156,11 +156,9 @@ describe('Saucedemo Website Tests', () => {
 
   it('TC - [008] should complete checkout process', async () => {
     expect(await inventoryPage.inventoryList.isDisplayed()).toBe(true);
-    const secondProductName = await $(
-      '.inventory_item:nth-child(2) .inventory_item_name'
-    ).getText();
+    const secondProductName = await inventoryPage.secondProductName.getText();
     const secondProductPrice = parseFloat(
-      (await $('.inventory_item:nth-child(2) .inventory_item_price').getText()).replace('$', '')
+      (await inventoryPage.secondProductPrice.getText()).replace('$', '')
     );
     await inventoryPage.clickAddToCartByIndex(2);
     await inventoryPage.cartBadge.waitForDisplayed({ timeout: 10000 });
@@ -172,14 +170,14 @@ describe('Saucedemo Website Tests', () => {
       timeout: 5000,
     });
     expect(await cartPage.cartList.isDisplayed()).toBe(true);
-    const cartItems = await $$('.cart_item .inventory_item_name');
+    const cartItems = await cartPage.cartItemName;
     expect(cartItems.length).toBeGreaterThan(0, 'No items found in cart');
     let cartItemNames = [];
     for (const item of cartItems) {
       cartItemNames.push(await item.getText());
     }
     expect(cartItemNames).toContain(secondProductName);
-    const prices = await $$('.cart_item .inventory_item_price');
+    const prices = await cartPage.cartItemPrice;
     expect(prices.length).toBeGreaterThan(0, 'No prices found in cart');
     let priceValues = [];
     for (const price of prices) {
@@ -194,7 +192,7 @@ describe('Saucedemo Website Tests', () => {
     );
     const firstName = faker.person.firstName();
     const lastName = faker.person.lastName();
-    const postalCode = faker.location.zipCode()
+    const postalCode = faker.location.zipCode();
     await checkoutPage.fillCheckoutForm(firstName, lastName, postalCode);
     expect(await checkoutPage.firstNameInput.getValue()).toEqual(firstName);
     expect(await checkoutPage.lastNameInput.getValue()).toEqual(lastName);
@@ -204,11 +202,11 @@ describe('Saucedemo Website Tests', () => {
       async () => (await browser.getUrl()).includes('checkout-step-two.html'),
       { timeout: 5000 }
     );
-    await $('.summary_tax_label').waitForDisplayed({ timeout: 10000 });
-    const taxElement = await $('.summary_tax_label');
+    await checkoutPage.taxLabel.waitForDisplayed({ timeout: 10000 });
+    const taxElement = await checkoutPage.taxLabel;
     const taxText = await taxElement.getText();
     const taxAmount = parseFloat(taxText.replace('Tax: $', ''));
-    const totalElement = await $('.summary_total_label');
+    const totalElement = await checkoutPage.totalLabel;
     const totalText = await totalElement.getText();
     const totalPrice = parseFloat(totalText.replace('Total: $', ''));
     expect(totalPrice).toEqual(
@@ -236,7 +234,7 @@ describe('Saucedemo Website Tests', () => {
       timeout: 5000,
     });
     expect(await cartPage.cartList.isDisplayed()).toBe(true);
-    const items = await $$('.cart_item');
+    const items = await cartPage.cartItem;
     expect(items.length).toEqual(0);
     await cartPage.clickCheckoutButton();
     const errorText = await $(errorSelector).getText();
