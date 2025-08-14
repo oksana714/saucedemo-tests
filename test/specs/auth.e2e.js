@@ -21,9 +21,7 @@ describe('Saucedemo Authentication Tests', () => {
 
   it('TC - [003] should show error with invalid username, highlight login and password fields, display error icons, and hide password', async () => {
     await loginPage.login('standarD_user', 'secret_sauce');
-    expect(await loginPage.errorMessage.getText()).toEqual(
-      'Epic sadface: Username and password do not match any user in this service'
-    );
+    await loginPage.getErrorText('Epic sadface: Username and password do not match any user in this service');
     expect(await loginPage.inputUsername.getAttribute('class')).toContain('input_error');
     expect(await loginPage.inputPassword.getAttribute('class')).toContain('input_error');
     expect(await loginPage.usernameErrorIcon.isDisplayed()).toBe(true);

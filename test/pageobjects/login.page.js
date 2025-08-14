@@ -33,5 +33,8 @@ class LoginPage extends Page {
   async open() {
     return await super.open('');
   }
+  async getErrorText(msg) {
+    await expect(this.errorMessage).toHaveText(msg);
+  }
 }
 export default new LoginPage();
